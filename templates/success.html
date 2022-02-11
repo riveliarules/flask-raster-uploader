@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+    <title>Upload de arquivo para o Geoserver</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="title">
+            Upload de arquivo para o Geoserver
+        </div>
+        <div class="wrapper">
+            <div class="alert alert-success">
+                {% for mess in get_flashed_messages() %}
+                <p class="message">{{mess}}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form">
+            <button class='btn'> <a href="/">Enviar mais um arquivo.</a></button>
+        </div>
+    </div>
+</body>
+
+</html>

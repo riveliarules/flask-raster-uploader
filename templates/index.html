@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
+    <title>Upload de arquivo para o Geoserver</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="title">
+            Upload de arquivo para o Geoserver
+        </div>
+        <div class="form">
+            <form method="post" enctype="multipart/form-data">
+                <div class=" wrapper custom_select">
+                    <label>Selecione o workspace</label>
+                    <select name="workspace" required>
+                        <option disabled selected value> -- Selecione um workspace -- </option>
+                        {% for workspace in workspaces  %}
+                        <option value= "{{workspace}}">{{ workspace.title() }}</option>"
+                        {% endfor %}
+                    </select>
+                </div> 
+                <div class=" wrapper inputfield">
+                    <label>Selecione o arquivo raster</label>
+                    <input type="file" name="file" class="input" required>
+                </div>
+                <div class="inputfield">
+                    <input type="submit" value="Enviar" class="btn">
+                </div>
+            </form>
+        </div>
+        {% with warnings = get_flashed_messages(category_filter=["warning"]) %}
+        {% if warnings %}
+        <div class="wrapper">
+            <div class="alert alert-warning">
+                {% for mess in warnings  %}
+                <p class="message">{{mess}}</p>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% endwith %}        
+    </div>	
+</body>
+</html>
